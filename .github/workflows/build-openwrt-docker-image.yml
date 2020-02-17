@@ -96,8 +96,8 @@ jobs:
     - name: Upload RootFS Archive
       uses: actions/upload-artifact@master
       with:
-        name: openwrt-brcm2708-bcm2709-rpi-2-rootfs.tar.gz.zip
-        path: openwrt/bin/targets/brcm2708/bcm2709/openwrt-brcm2708-bcm2709-rpi-2-rootfs.tar.gz
+        name: openwrt-bcm27xx-bcm2709-rpi-2-rootfs.tar.gz.zip
+        path: openwrt/bin/targets/bcm27xx/bcm2709/openwrt-bcm27xx-bcm2709-rpi-2-rootfs.tar.gz
 
     - name: Docker Hub Login
       run: docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PWD }}
@@ -107,8 +107,8 @@ jobs:
 
     - name: Build Docker Image
       run: |
-        cd openwrt/bin/targets/brcm2708/bcm2709/
-        docker import openwrt-brcm2708-bcm2709-rpi-2-rootfs.tar.gz ${{ secrets.DOCKER_HUB_USERNAME }}/openwrt:beta
+        cd openwrt/bin/targets/bcm27xx/bcm2709/
+        docker import openwrt-bcm27xx-bcm2709-rpi-2-rootfs.tar.gz ${{ secrets.DOCKER_HUB_USERNAME }}/openwrt:beta
 
     - name: Push Docker Image To Docker Hub
       run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/openwrt:beta
