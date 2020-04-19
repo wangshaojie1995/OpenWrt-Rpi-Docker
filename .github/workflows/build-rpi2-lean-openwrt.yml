@@ -6,7 +6,7 @@
 # Blog: https://p3terx.com
 #=================================================
 
-name: Build x86_64 OpenWrt Docker Image
+name: Build Raspberry Pi OpenWrt Docker Image
 
 on: 
   release:
@@ -15,7 +15,7 @@ on:
     branches: 
       - master
     paths:
-      - 'config/x86_64-openwrt-docker.config'
+      - 'config/rpi-openwrt-docker.config'
   schedule:
     - cron: 0 18 * * *
 #  watch:
@@ -24,12 +24,12 @@ on:
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
-  CONFIG_FILE: config/x86_64-openwrt-docker.config
+  CONFIG_FILE: config/rpi-openwrt-docker.config
   DIY_SH: scripts/lean-openwrt.sh
   TZ: Asia/Shanghai
-  TARGET: x86
-  SUBTARGET: 64
-  DEVICE: openwrt-x86-64
+  TARGET: bcm27xx
+  SUBTARGET: bcm2709
+  DEVICE: openwrt-bcm27xx-bcm2709-rpi-2
   SSH_ACTIONS: false
   UPLOAD_ROOTFS: true
   UPLOAD_WETRANSFER: true
@@ -93,14 +93,15 @@ jobs:
       run: |
         cd openwrt
         echo -e "$(nproc) thread compile"
-        make -j$(nproc) || make -j1
+        make -j$(nproc) IGNORE_ERRORS=1 || make -j1 V=s IGNORE_ERRORS=1
         echo "::set-output name=status::success"
 
     - name: Upload RootFS Archive
       uses: actions/upload-artifact@master
+      if: steps.compile.outputs.status == 'success' && env.UPLOAD_ROOTFS == 'true'
       with:
-        name: openwrt-x86-64-generic-rootfs.tar.gz
-        path: openwrt/bin/targets/x86/64/openwrt-x86-64-generic-rootfs.tar.gz
+        name: ${{ env.DEVICE }}-rootfs.tar.gz
+        path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.DEVICE }}-rootfs.tar.gz
         
     - name: Organize Files
       id: organize
@@ -124,7 +125,7 @@ jobs:
         curl -fsSL git.io/file-transfer | sh
         ./transfer wet -s -p 16 --no-progress ${FIRMWARE} 2>&1 | tee wetransfer.log
         echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
-
+        
     - name: Docker Hub Login
       run: docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PWD }}
 
@@ -133,13 +134,13 @@ jobs:
 
     - name: Build Docker Image
       run: |
-        cd openwrt/bin/targets/x86/64
-        docker import openwrt-x86-64-generic-rootfs.tar.gz ${{ secrets.DOCKER_HUB_USERNAME }}/openwrt:x86_64
+        cd openwrt/bin/targets/$TARGET/$SUBTARGET/
+        docker import $DEVICE-rootfs.tar.gz ${{ secrets.DOCKER_HUB_USERNAME }}/openwrt:beta
 
     - name: Push Docker Image To Docker Hub
-      run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/openwrt:x86_64
+      run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/openwrt:beta
       
     - name: Push Docker Image To Aliyun Docker Registry
       run: |
-        docker tag ${{ secrets.DOCKER_HUB_USERNAME }}/openwrt:x86_64 registry.cn-shanghai.aliyuncs.com/${{ secrets.ALIYUN_NAMESPACES }}/openwrt:x86_64
-        docker push registry.cn-shanghai.aliyuncs.com/${{ secrets.ALIYUN_NAMESPACES }}/openwrt:x86_64
+        docker tag ${{ secrets.DOCKER_HUB_USERNAME }}/openwrt:beta registry.cn-shanghai.aliyuncs.com/${{ secrets.ALIYUN_NAMESPACES }}/openwrt:beta
+        docker push registry.cn-shanghai.aliyuncs.com/${{ secrets.ALIYUN_NAMESPACES }}/openwrt:beta

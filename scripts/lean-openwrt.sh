@@ -8,39 +8,36 @@
 # Modify default IP
 #sed -i 's/192.168.1.1/192.168.50.5/g' package/base-files/files/bin/config_generate
 
+# Add luci-app-ssr-plus
+pushd package/lean
+git clone --depth=1 https://github.com/fw876/helloworld
+popd
+
 # Clone community packages to package/community
 mkdir package/community
 pushd package/community
 
 # Add mentohust & luci-app-mentohust.
-git clone https://github.com/BoringCat/luci-app-mentohust
-git clone https://github.com/KyleRicardo/MentoHUST-OpenWrt-ipk
+git clone --depth=1 https://github.com/BoringCat/luci-app-mentohust
+git clone --depth=1 https://github.com/KyleRicardo/MentoHUST-OpenWrt-ipk
 
 # Add ServerChan
-git clone https://github.com/tty228/luci-app-serverchan
+git clone --depth=1 https://github.com/tty228/luci-app-serverchan
 
 # Add OpenClash
-git clone https://github.com/vernesong/OpenClash
-
-# Add luci-app-koolproxyR
-git clone https://github.com/Leo-Jo/luci-app-koolproxyR
+git clone --depth=1 https://github.com/vernesong/OpenClash
 
 # Add luci-app-onliner (need luci-app-nlbwmon)
-git clone https://github.com/rufengsuixing/luci-app-onliner
+git clone --depth=1 https://github.com/rufengsuixing/luci-app-onliner
 
 # Add luci-app-adguardhome
-git clone https://github.com/rufengsuixing/luci-app-adguardhome
+git clone --depth=1 https://github.com/rufengsuixing/luci-app-adguardhome
 
 # Add Rclone-OpenWrt
-git clone https://github.com/ElonH/Rclone-OpenWrt
-
-# Add luci-app-diskman
-git clone https://github.com/lisaac/luci-app-diskman
-mkdir parted
-cp luci-app-diskman/Parted.Makefile parted/Makefile
+git clone --depth=1 https://github.com/ElonH/Rclone-OpenWrt
 
 # Add luci-theme-argon
-git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon
+git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon
 rm -rf ../lean/luci-theme-argon
 
 # Add tmate
@@ -57,10 +54,12 @@ svn co https://github.com/project-openwrt/openwrt/trunk/package/ctcgfw/rapidjson
 
 # Add smartdns
 svn co https://github.com/pymumu/smartdns/trunk/package/openwrt ../smartdns
-git clone https://github.com/SuLingGG/luci-app-smartdns ../luci-app-smartdns
+svn co https://github.com/project-openwrt/openwrt/trunk/package/ntlf9t/luci-app-smartdns ../luci-app-smartdns
 
-# Add OpenAppFilter
-git clone https://github.com/destan19/OpenAppFilter
+# Add udptools
+git clone --depth=1 --depth=1 https://github.com/bao3/openwrt-udp2raw
+git clone --depth=1 --depth=1 https://github.com/bao3/openwrt-udpspeeder
+git clone --depth=1 --depth=1 https://github.com/bao3/luci-udptools
 popd
 
 # Fix libssh
@@ -68,6 +67,3 @@ pushd feeds/packages/libs
 rm -rf libssh
 svn co https://github.com/openwrt/packages/trunk/libs/libssh
 popd
-
-# Change timezone
-sed -i "s/'UTC'/'CST-8'\n        set system.@system[-1].zonename='Asia\/Shanghai'/g" package/base-files/files/bin/config_generate
