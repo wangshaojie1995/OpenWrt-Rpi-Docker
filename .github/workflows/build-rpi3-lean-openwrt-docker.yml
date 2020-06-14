@@ -15,7 +15,7 @@ on:
     branches: 
       - master
     paths:
-      - 'config/rpi3-openwrt-docker.config'
+      - 'config/lean/rpi3-openwrt-docker.config'
   schedule:
     - cron: 0 18 * * *
 #  watch:
@@ -24,7 +24,7 @@ on:
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
-  CONFIG_FILE: config/rpi3-openwrt-docker.config
+  CONFIG_FILE: config/lean/rpi3-openwrt-docker.config
   DEVICE: openwrt-bcm27xx-bcm2710-rpi-3
   DIY_SH: scripts/lean-openwrt.sh
   SSH_ACTIONS: false
