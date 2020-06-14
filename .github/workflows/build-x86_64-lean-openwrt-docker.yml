@@ -136,8 +136,8 @@ jobs:
       uses: actions/upload-artifact@master
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_ROOTFS == 'true'
       with:
-        name: ${{ env.DEVICE }}-rootfs.tar.gz
-        path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.DEVICE }}-rootfs.tar.gz
+        name: ${{ env.DEVICE }}-generic-rootfs.tar.gz
+        path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.DEVICE }}-generic-rootfs.tar.gz
         
     - name: Organize Files
       id: organize
@@ -165,7 +165,7 @@ jobs:
     - name: Build & Push Docker Image To Dockerhub
       run: |
         cd openwrt/bin/targets/$TARGET/$SUBTARGET/
-        docker import $DEVICE-rootfs.tar.gz ${{ secrets.DOCKER_HUB_USERNAME }}/openwrt:x86_64
+        docker import $DEVICE-generic-rootfs.tar.gz ${{ secrets.DOCKER_HUB_USERNAME }}/openwrt:x86_64
         docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PWD }}
         docker push ${{ secrets.DOCKER_HUB_USERNAME }}/openwrt:x86_64
       
