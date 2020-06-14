@@ -17,7 +17,7 @@ on:
     paths:
       - 'config/lean/rpi3-openwrt-docker.config'
   schedule:
-    - cron: 0 18 * * *
+    - cron: 0 0 * * *
 #  watch:
 #    types: [started]
 

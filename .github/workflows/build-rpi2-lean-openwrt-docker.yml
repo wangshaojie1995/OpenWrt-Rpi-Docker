@@ -17,7 +17,7 @@ on:
     paths:
       - 'config/lean/rpi2-openwrt-docker.config'
   schedule:
-    - cron: 0 18 * * *
+    - cron: 0 0 * * *
 #  watch:
 #    types: [started]
 
@@ -168,6 +168,8 @@ jobs:
         docker import $DEVICE-rootfs.tar.gz ${{ secrets.DOCKER_HUB_USERNAME }}/openwrt:rpi2
         docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PWD }}
         docker push ${{ secrets.DOCKER_HUB_USERNAME }}/openwrt:rpi2
+        docker tag ${{ secrets.DOCKER_HUB_USERNAME }}/openwrt:rpi2 ${{ secrets.DOCKER_HUB_USERNAME }}/openwrt:latest
+        docker push ${{ secrets.DOCKER_HUB_USERNAME }}/openwrt:latest
       
     - name: Push Docker Image To Aliyun Docker Registry
       run: |
