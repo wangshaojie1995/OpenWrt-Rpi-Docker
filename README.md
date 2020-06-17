@@ -7,6 +7,10 @@
 
 本项目旨在构建适用于树莓派 1~4 的 OpenWrt 镜像 (每日更新)。
 
+Github: <https://github.com/SuLingGG/OpenWrt-Rpi-Docker>
+
+DockerHub: <https://hub.docker.com/r/sulinggg/openwrt>
+
 ## 支持设备及镜像版本
 
 本项目基于 Lean 大 OpenWrt 源码，每日上午 8 点编译适用于树莓派 1~4 的 OpenWrt 镜像，镜像构建完成后将同时推送到 [DockerHub](https://hub.docker.com/r/sulinggg/openwrt) 和 阿里云镜像仓库 (上海) 。
