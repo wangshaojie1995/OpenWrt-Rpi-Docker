@@ -18,7 +18,7 @@ mkdir package/community
 pushd package/community
 
 # Add Lienol's Packages
-git clone --depth=1 https://github.com/SuLingGG/openwrt-package
+git clone --depth=1 https://github.com/Lienol/openwrt-package
 
 # Add mentohust & luci-app-mentohust.
 git clone --depth=1 https://github.com/BoringCat/luci-app-mentohust
@@ -49,6 +49,10 @@ rm -rf ../lean/luci-app-docker
 
 # Add luci-app-gowebdav
 git clone --depth=1 https://github.com/project-openwrt/openwrt-gowebdav
+
+# Add luci-app-jd-dailybonus
+git clone --depth=1 https://github.com/jerrykuku/node-request
+git clone --depth=1 https://github.com/jerrykuku/luci-app-jd-dailybonus
 
 # Add luci-theme-argon
 git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon
