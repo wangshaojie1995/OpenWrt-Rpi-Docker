@@ -5,7 +5,7 @@
 [![Docker Stars](https://img.shields.io/docker/stars/sulinggg/openwrt.svg?style=flat-square&label=Stars&logo=docker)](https://hub.docker.com/r/sulinggg/openwrt)
 [![Docker Pulls](https://img.shields.io/docker/pulls/sulinggg/openwrt.svg?style=flat-square&label=Pulls&logo=docker&color=orange)](https://hub.docker.com/r/sulinggg/openwrt)
 
-本项目旨在构建适用于树莓派 1~4 的 OpenWrt 镜像 (每日更新)。
+本项目旨在构建适用于树莓派 1~4 与 x86_64 平台的 OpenWrt 镜像 (每日更新)。
 
 Github: <https://github.com/SuLingGG/OpenWrt-Rpi-Docker>
 
@@ -13,16 +13,17 @@ DockerHub: <https://hub.docker.com/r/sulinggg/openwrt>
 
 ## 支持设备及镜像版本
 
-本项目基于 Lean 大 OpenWrt 源码，每日上午 8 点编译适用于树莓派 1~4 的 OpenWrt 镜像，镜像构建完成后将同时推送到 [DockerHub](https://hub.docker.com/r/sulinggg/openwrt) 和 阿里云镜像仓库 (上海) 。
+本项目基于 Lean 大 OpenWrt 源码，每日上午 8 点编译适用于树莓派 1~4 与 x86_64 平台 的 OpenWrt 镜像，镜像构建完成后将同时推送到 [DockerHub](https://hub.docker.com/r/sulinggg/openwrt) 和 阿里云镜像仓库 (上海) 。
 
 对于国内用户，为提高镜像拉取体验，可以考虑拉取存放于阿里云镜像仓库的镜像，镜像名称及标签如下表所示:
 
-|    支持设备     |       DockerHub       |                 阿里云镜像仓库 (上海)                 |
-| :-------------: | :-------------------: | :---------------------------------------------------: |
-|    树莓派 1B    | sulinggg/openwrt:rpi1 | registry.cn-shanghai.aliyuncs.com/suling/openwrt:rpi1 |
-|    树莓派 2B    | sulinggg/openwrt:rpi2 | registry.cn-shanghai.aliyuncs.com/suling/openwrt:rpi2 |
-| 树莓派 3B / 3B+ | sulinggg/openwrt:rpi3 | registry.cn-shanghai.aliyuncs.com/suling/openwrt:rpi3 |
-|    树莓派 4B    | sulinggg/openwrt:rpi4 | registry.cn-shanghai.aliyuncs.com/suling/openwrt:rpi4 |
+|    支持设备     |        DockerHub        |                  阿里云镜像仓库 (上海)                  |
+| :-------------: | :---------------------: | :-----------------------------------------------------: |
+|    树莓派 1B    |  sulinggg/openwrt:rpi1  |  registry.cn-shanghai.aliyuncs.com/suling/openwrt:rpi1  |
+|    树莓派 2B    |  sulinggg/openwrt:rpi2  |  registry.cn-shanghai.aliyuncs.com/suling/openwrt:rpi2  |
+| 树莓派 3B / 3B+ |  sulinggg/openwrt:rpi3  |  registry.cn-shanghai.aliyuncs.com/suling/openwrt:rpi3  |
+|    树莓派 4B    |  sulinggg/openwrt:rpi4  |  registry.cn-shanghai.aliyuncs.com/suling/openwrt:rpi4  |
+|     x86_64      | sulinggg/openwrt:x86_64 | registry.cn-shanghai.aliyuncs.com/suling/openwrt:x86_64 |
 
 ## 注意事项
 
@@ -31,8 +32,6 @@ DockerHub: <https://hub.docker.com/r/sulinggg/openwrt>
 若拉取镜像时不加任何标签，则将使用 latest 标签拉取镜像，latest 指向的镜像与树莓派 2B 镜像实际上为同一镜像。
 
 镜像中软件包的集成情况基本上与 [SuLingGG/OpenWrt-Rpi](SuLingGG/OpenWrt-Rpi) 项目中相同，但在 SuLingGG/OpenWrt-Rpi 项目的基础上，去掉了一些和无线有关的软件包。
-
-虽然本项目也提供 x86_64 架构的 OpenWrt 镜像，但目前 x86_64 架构的镜像存在一些问题 (比如无法实现科学上网)，不建议使用，如确有需求，可以使用 `sulinggg/openwrt:x86_64` 或 `registry.cn-shanghai.aliyuncs.com/suling/openwrt:x86_64` 拉取 x86_64 架构的 OpenWrt Docker 镜像。
 
 镜像详细使用方法请参考博客文章:
 

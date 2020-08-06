@@ -41,12 +41,6 @@ git clone --depth=1 https://github.com/lisaac/luci-app-diskman
 mkdir parted
 cp luci-app-diskman/Parted.Makefile parted/Makefile
 
-# Add luci-app-dockerman
-git clone --depth=1 https://github.com/KFERMercer/luci-app-dockerman
-mkdir luci-lib-docker
-curl -s -o ./luci-lib-docker/Makefile https://raw.githubusercontent.com/lisaac/luci-lib-docker/master/Makefile
-rm -rf ../lean/luci-app-docker
-
 # Add luci-app-gowebdav
 git clone --depth=1 https://github.com/project-openwrt/openwrt-gowebdav
 
@@ -65,11 +59,6 @@ svn co https://github.com/project-openwrt/openwrt/trunk/package/ctcgfw/msgpack-c
 # Add gotop
 svn co https://github.com/project-openwrt/openwrt/trunk/package/ctcgfw/gotop
 
-# Subscribe converters
-svn co https://github.com/project-openwrt/openwrt/trunk/package/ctcgfw/subconverter
-svn co https://github.com/project-openwrt/openwrt/trunk/package/ctcgfw/jpcre2
-svn co https://github.com/project-openwrt/openwrt/trunk/package/ctcgfw/rapidjson
-
 # Add smartdns
 svn co https://github.com/pymumu/smartdns/trunk/package/openwrt ../smartdns
 svn co https://github.com/project-openwrt/openwrt/trunk/package/ntlf9t/luci-app-smartdns ../luci-app-smartdns
@@ -84,7 +73,10 @@ git clone --depth=1 https://github.com/destan19/OpenAppFilter
 popd
 
 # Fix default-settings for local opkg sources
-sed -i '/http/d' package/lean/default-settings/files/zzz-default-settings
+pushd package/lean/default-settings/files
+sed -i '/http/d' zzz-default-settings
+sed -i "/commit luci/i\uci set luci.main.mediaurlbase='/luci-static/argon'" zzz-default-settings
+popd
 
 # Fix libssh
 pushd feeds/packages/libs
