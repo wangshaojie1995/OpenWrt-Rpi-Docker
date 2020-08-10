@@ -176,3 +176,5 @@ jobs:
         docker login -u ${{ secrets.ALIYUN_USERNAME }} -p ${{ secrets.ALIYUN_PWD }} registry.cn-shanghai.aliyuncs.com
         docker tag ${{ secrets.DOCKER_HUB_USERNAME }}/openwrt:rpi2 registry.cn-shanghai.aliyuncs.com/${{ secrets.ALIYUN_NAMESPACES }}/openwrt:rpi2
         docker push registry.cn-shanghai.aliyuncs.com/${{ secrets.ALIYUN_NAMESPACES }}/openwrt:rpi2
+        docker tag ${{ secrets.DOCKER_HUB_USERNAME }}/openwrt:rpi2 registry.cn-shanghai.aliyuncs.com/${{ secrets.ALIYUN_NAMESPACES }}/openwrt:latest
+        docker push registry.cn-shanghai.aliyuncs.com/${{ secrets.ALIYUN_NAMESPACES }}/openwrt:latest
