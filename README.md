@@ -13,17 +13,18 @@ DockerHub: <https://hub.docker.com/r/sulinggg/openwrt>
 
 ## 支持设备及镜像版本
 
-本项目基于 Lean 大 OpenWrt 源码，每日上午 8 点编译适用于树莓派 1~4 与 x86_64 平台 的 OpenWrt 镜像，镜像构建完成后将同时推送到 [DockerHub](https://hub.docker.com/r/sulinggg/openwrt) 和 阿里云镜像仓库 (上海) 。
+本项目基于 Lean 大 OpenWrt 源码，每日上午 8 点编译适用于树莓派 1~4 与 x86 平台 (包含 64 位和 32 位) 的 OpenWrt 镜像，镜像构建完成后将同时推送到 [DockerHub](https://hub.docker.com/r/sulinggg/openwrt) 和 阿里云镜像仓库 (上海) 。
 
 对于国内用户，为提高镜像拉取体验，可以考虑拉取存放于阿里云镜像仓库的镜像，镜像名称及标签如下表所示:
 
-|    支持设备     |        DockerHub        |                  阿里云镜像仓库 (上海)                  |
-| :-------------: | :---------------------: | :-----------------------------------------------------: |
-|    树莓派 1B    |  sulinggg/openwrt:rpi1  |  registry.cn-shanghai.aliyuncs.com/suling/openwrt:rpi1  |
-|    树莓派 2B    |  sulinggg/openwrt:rpi2  |  registry.cn-shanghai.aliyuncs.com/suling/openwrt:rpi2  |
-| 树莓派 3B / 3B+ |  sulinggg/openwrt:rpi3  |  registry.cn-shanghai.aliyuncs.com/suling/openwrt:rpi3  |
-|    树莓派 4B    |  sulinggg/openwrt:rpi4  |  registry.cn-shanghai.aliyuncs.com/suling/openwrt:rpi4  |
-|     x86_64      | sulinggg/openwrt:x86_64 | registry.cn-shanghai.aliyuncs.com/suling/openwrt:x86_64 |
+|      支持设备      |          DockerHub           |                    阿里云镜像仓库 (上海)                     |
+| :----------------: | :--------------------------: | :----------------------------------------------------------: |
+|     树莓派 1B      |    sulinggg/openwrt:rpi1     |    registry.cn-shanghai.aliyuncs.com/suling/openwrt:rpi1     |
+|     树莓派 2B      |    sulinggg/openwrt:rpi2     |    registry.cn-shanghai.aliyuncs.com/suling/openwrt:rpi2     |
+|  树莓派 3B / 3B+   |    sulinggg/openwrt:rpi3     |    registry.cn-shanghai.aliyuncs.com/suling/openwrt:rpi3     |
+|     树莓派 4B      |    sulinggg/openwrt:rpi4     |    registry.cn-shanghai.aliyuncs.com/suling/openwrt:rpi4     |
+|   x86_64 (64 位)   |   sulinggg/openwrt:x86_64    |   registry.cn-shanghai.aliyuncs.com/suling/openwrt:x86_64    |
+| x86_generic (32位) | sulinggg/openwrt:x86_generic | registry.cn-shanghai.aliyuncs.com/suling/openwrt:x86_generic |
 
 ## 注意事项
 
