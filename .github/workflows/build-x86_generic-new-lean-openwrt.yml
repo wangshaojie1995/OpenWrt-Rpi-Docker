@@ -78,6 +78,7 @@ jobs:
         chmod +x scripts/*.sh
         cd $OPENWRTROOT
         ../$DIY_SH
+        rm -rf package/lean/luci-app-ipsec-vpnd
         ../scripts/preset-clash-core.sh 386
         ../scripts/preset-terminal-tools.sh
 
