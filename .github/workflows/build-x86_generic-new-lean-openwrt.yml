@@ -26,7 +26,7 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   CONFIG_FILE: config/lean/x86/x86_generic-lean-target.config
-  DEVICE: openwrt-x86_generic
+  DEVICE: openwrt-x86-generic
   DIY_SH: scripts/lean-openwrt.sh
   IPV6MOD_IN_FIRMWARE: false
   KMODS_IN_FIRMWARE: false
